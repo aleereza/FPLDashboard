@@ -1,0 +1,5 @@
+type GW @model {
+  id: ID!
+  name: String!
+  posts: String
+}

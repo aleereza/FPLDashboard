@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "fpldashboard-dev-20200203120929-authRole",
+            "UnauthRoleArn": "arn:aws:iam::140651927358:role/fpldashboard-dev-20200203120929-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::140651927358:role/fpldashboard-dev-20200203120929-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "fpldashboard-dev-20200203120929-deployment",
+            "UnauthRoleName": "fpldashboard-dev-20200203120929-unauthRole",
+            "StackName": "fpldashboard-dev-20200203120929",
+            "StackId": "arn:aws:cloudformation:us-west-2:140651927358:stack/fpldashboard-dev-20200203120929/16065e50-46c1-11ea-9d44-0a79dfa95450",
+            "AmplifyAppId": "d2flmpgcyor4fl"
+        },
+        "categories": {
+            "auth": {
+                "fpldashboarded1b61ca": {}
+            }
+        }
+    }
+}

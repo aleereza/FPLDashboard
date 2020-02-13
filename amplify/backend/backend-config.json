@@ -1,0 +1,36 @@
+{
+	"api": {
+		"fpldashboard": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "fpl-main-api",
+							"apiKeyExpirationDays": 7
+						}
+					}
+				}
+			}
+		}
+	},
+	"storage": {},
+	"function": {
+		"updateDB": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	},
+	"auth": {
+		"fpldashboarded1b61ca": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
