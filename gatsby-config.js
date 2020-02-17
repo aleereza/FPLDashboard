@@ -5,21 +5,6 @@ module.exports = {
     author: `@aleereza`,
   },
   plugins: [
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        // This type will contain remote schema Query type
-        typeName: "SWAPI",
-        // This is the field under which it's accessible
-        fieldName: "swapi",
-        // URL to query from
-        url:
-          "https://jyaq2ny6ivgexjhikjotxiyqkm.appsync-api.us-west-2.amazonaws.com/graphql",
-        headers: {
-          "x-api-key": "da2-omzer2dixrdztaxjtszhnbmc4y",
-        },
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -28,7 +13,14 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data/`,
+      },
+    },
+    `gatsby-transformer-csv`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

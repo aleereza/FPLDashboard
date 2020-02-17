@@ -1,5 +1,33 @@
-type GW @model {
-  id: ID!
-  name: String!
-  posts: String
+type Players @model {
+  assists: String
+  bonus: String
+  bps: String
+  clean_sheets: String
+  creativity: String
+  element: String!
+  fixture: String
+  goals_conceded: String
+  goals_scored: String
+  ict_index: String
+  influence: String
+  kickoff_time: String
+  minutes: String
+  opponent_team: String
+  own_goals: String
+  penalties_missed: String
+  penalties_saved: String
+  red_cards: String
+  round: String
+  saves: String
+  selected: String
+  team_a_score: String
+  team_h_score: String
+  threat: String
+  total_points: String
+  transfers_balance: String
+  transfers_in: String
+  transfers_out: String
+  value: String
+  was_home: String
+  yellow_cards: String
 }

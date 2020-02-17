@@ -1,6 +1,6 @@
 {
     "identityPoolName": "fpldashboarded1b61ca_identitypool_ed1b61ca",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "fpldased1b61ca",
     "userPoolName": "fpldashboarded1b61ca_userpool_ed1b61ca",
     "autoVerifiedAttributes": [

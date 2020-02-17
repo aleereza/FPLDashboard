@@ -17,14 +17,13 @@
 			}
 		}
 	},
-	"storage": {},
-	"function": {
-		"updateDB": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
+	"storage": {
+		"s3datastorage": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
 		}
 	},
+	"function": {},
 	"auth": {
 		"fpldashboarded1b61ca": {
 			"service": "Cognito",
