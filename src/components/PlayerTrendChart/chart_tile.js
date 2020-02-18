@@ -14,14 +14,28 @@ class ChartTile extends React.Component {
   player_fullnames = []
   game_weeks = []
   color_palette = [
-    "#003f5c",
-    "#2f4b7c",
-    "#665191",
-    "#a05195",
-    "#d45087",
-    "#f95d6a",
-    "#ff7c43",
-    "#ffa600",
+    "#e6194b",
+    "#3cb44b",
+    "#ffe119",
+    "#4363d8",
+    "#f58231",
+    "#911eb4",
+    "#46f0f0",
+    "#f032e6",
+    "#bcf60c",
+    "#fabebe",
+    "#008080",
+    "#e6beff",
+    "#9a6324",
+    "#fffac8",
+    "#800000",
+    "#aaffc3",
+    "#808000",
+    "#ffd8b1",
+    "#000075",
+    "#808080",
+    "#ffffff",
+    "#000000",
   ]
 
   onSelectedPropertyChange = selected_property => {
@@ -101,6 +115,7 @@ class ChartTile extends React.Component {
             options={this.player_fullnames}
             selected={this.state.selected_players}
             onUpdateSelected={this.onSelectedPlayersChange}
+            color_palette={this.color_palette}
           />
         </div>
         <div css={[chartStyle, generalLayoutStyle]}>
@@ -109,6 +124,7 @@ class ChartTile extends React.Component {
             property={this.state.selected_property}
             players_data={this.props.players_data}
             player_fullnames={this.player_fullnames}
+            color_palette={this.color_palette}
           />
         </div>
       </div>

@@ -67,6 +67,17 @@ class AutoCompleteMulti extends React.Component {
       z-index: 10;
       background-color: silver;
       width: 100%;
+      p {
+        margin: 0;
+      }
+      p:hover {
+        background-color: lightblue;
+        cursor: pointer;
+      }
+    `
+
+    const selectedStyle = css`
+      margin: 0;
     `
 
     return (
@@ -86,7 +97,17 @@ class AutoCompleteMulti extends React.Component {
         </div>
         <div>
           {this.props.selected.map((selected_option, index) => (
-            <p key={index}>
+            <p
+              key={index}
+              css={selectedStyle}
+              style={{
+                backgroundColor: `${
+                  this.props.color_palette[
+                    index % this.props.color_palette.length
+                  ]
+                }`,
+              }}
+            >
               {selected_option}
               <span onClick={() => this.handleOptionRemove(selected_option)}>
                 {" "}

@@ -41,8 +41,8 @@ class Chart extends PureComponent {
           // height={300}
           data={data}
           margin={{
-            top: 0,
-            right: 0,
+            top: 10,
+            right: 10,
             left: 0,
             bottom: 0,
           }}
@@ -57,7 +57,9 @@ class Chart extends PureComponent {
               key={i}
               type="monotone"
               dataKey={player_fullnames[id]}
-              stroke="#8884d8"
+              stroke={
+                this.props.color_palette[i % this.props.color_palette.length]
+              }
               activeDot={{ r: 8 }}
             />
           ))}
