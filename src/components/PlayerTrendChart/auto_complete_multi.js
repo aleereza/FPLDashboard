@@ -35,10 +35,13 @@ class AutoCompleteMulti extends React.Component {
 
   handleOptionClick = selected_option => {
     let selected_options = this.props.selected
-    selected_options.push(selected_option)
-    console.log("option added!", selected_option)
-    this.setState({ search_text: "", suggestions: [] })
-    this.props.onUpdateSelected(selected_options)
+    //check if already selected
+    if (!selected_options.includes(selected_option)) {
+      selected_options.push(selected_option)
+      console.log("option added!", selected_option)
+      this.setState({ search_text: "", suggestions: [] })
+      this.props.onUpdateSelected(selected_options)
+    }
   }
 
   handleOptionRemove = selected_option => {
@@ -53,14 +56,17 @@ class AutoCompleteMulti extends React.Component {
 
   render() {
     const containerStyle = css`
-      width: 300px;
-      text-align: center;
-      padding: 0.5rem;
-      border: 1px solid black;
-      label {
-        font-size: 1.5rem;
-        line-height: 1.3;
+      position: relative;
+      input {
+        width: 100%;
       }
+    `
+
+    const suggestionsStyle = css`
+      position: absolute;
+      z-index: 10;
+      background-color: silver;
+      width: 100%;
     `
 
     return (
@@ -71,7 +77,7 @@ class AutoCompleteMulti extends React.Component {
           onChange={e => this.handleChange(e)}
           value={this.state.search_text}
         />
-        <div>
+        <div css={suggestionsStyle}>
           {this.state.suggestions.map((suggestion, index) => (
             <p key={index} onClick={() => this.handleOptionClick(suggestion)}>
               {suggestion}

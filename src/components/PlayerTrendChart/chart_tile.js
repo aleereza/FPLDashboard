@@ -13,6 +13,16 @@ class ChartTile extends React.Component {
   player_ids = []
   player_fullnames = []
   game_weeks = []
+  color_palette = [
+    "#003f5c",
+    "#2f4b7c",
+    "#665191",
+    "#a05195",
+    "#d45087",
+    "#f95d6a",
+    "#ff7c43",
+    "#ffa600",
+  ]
 
   onSelectedPropertyChange = selected_property => {
     this.setState({ selected_property: selected_property })
@@ -47,36 +57,59 @@ class ChartTile extends React.Component {
   }
 
   render() {
-    const propertySelectorStyle = css``
-    const playerSelectorStyle = css``
-    const chartStyle = css``
+    const tileContainerStyle = css`
+      display: grid;
+      grid-template-columns: 25% auto;
+      grid-template-rows: 25% auto;
+      grid-gap: 0.5rem;
+
+      label {
+        font-size: 1.2rem;
+        line-height: 1.3;
+      }
+    `
+    const generalLayoutStyle = css`
+      border: 1px solid red;
+      /* text-align: center; */
+      padding: 1rem;
+    `
+
+    const propertySelectorStyle = css`
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+    `
+    const playerSelectorStyle = css`
+      grid-row: 2 / 3;
+      grid-column: 1 / 2;
+    `
+    const chartStyle = css`
+      grid-row: 1 / 3;
+      grid-column: 2 / 3;
+    `
 
     return (
-      <div>
-        <div css={propertySelectorStyle}>
+      <div css={tileContainerStyle}>
+        <div css={[propertySelectorStyle, generalLayoutStyle]}>
           <DropDown
             title={this.state.selected_property}
             options={Object.keys(this.props.players_data[1].node)}
             onUpdateSelected={this.onSelectedPropertyChange}
           />
         </div>
-        <div css={playerSelectorStyle}></div>
-        <AutoCompleteMulti
-          options={this.player_fullnames}
-          selected={this.state.selected_players}
-          onUpdateSelected={this.onSelectedPlayersChange}
-        />
-        <Chart
-          player_ids={this.state.selected_players_id}
-          property={this.state.selected_property}
-          players_data={this.props.players_data}
-          player_fullnames={this.player_fullnames}
-        />
-        <div css={chartStyle}>
-          <p>selected propepty: {this.state.selected_property}</p>
-          <p>selected player: {this.state.selected_players + ">"}</p>
-          <p>selected player ids: {this.state.selected_players_id + ">"}</p>
-          {/* <p>selected players: {this.state.selected_players.map(player_id => player_fullnames[player_id]) + ">"}</p> */}
+        <div css={[playerSelectorStyle, generalLayoutStyle]}>
+          <AutoCompleteMulti
+            options={this.player_fullnames}
+            selected={this.state.selected_players}
+            onUpdateSelected={this.onSelectedPlayersChange}
+          />
+        </div>
+        <div css={[chartStyle, generalLayoutStyle]}>
+          <Chart
+            player_ids={this.state.selected_players_id}
+            property={this.state.selected_property}
+            players_data={this.props.players_data}
+            player_fullnames={this.player_fullnames}
+          />
         </div>
       </div>
     )

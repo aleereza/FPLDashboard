@@ -15,7 +15,6 @@ class ProjectsPage extends React.Component {
           players_data={this.props.data.allplayersdata.edges}
           players_id={this.props.data.allplayersiddata.edges}
         />
-        <p>{this.props.data.allplayersdata.edges[1].node.assists + "<"}</p>
       </>
     )
   }

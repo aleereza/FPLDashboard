@@ -22,27 +22,18 @@ class DropDown extends React.Component {
   }
 
   render() {
-    const containerStyle = css`
-      width: 300px;
-      text-align: center;
-      padding: 0.5rem;
-      border: 1px solid black;
-      label {
-        font-size: 1.5rem;
-        line-height: 1.3;
-      }
-    `
+    // const containerStyle = css``
     const selectStyle = css`
-      background-color: white;
-      width: 80%;
-      border-radius: 0.5rem;
-      height: 2rem;
+      /* background-color: white; */
+      width: 100%;
+      border-radius: 3px;
+      /* height: 2rem; */
       appearance: none;
     `
     const optionStyle = css``
 
     return (
-      <div css={containerStyle}>
+      <>
         <label htmlFor="Select Property">Select Property</label>
         <select
           css={selectStyle}
@@ -57,7 +48,7 @@ class DropDown extends React.Component {
           ))}
           >
         </select>
-      </div>
+      </>
     )
   }
 }
