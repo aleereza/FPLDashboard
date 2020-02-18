@@ -2,7 +2,7 @@ import React from "react"
 import SEO from "../components/seo"
 import App from "../components/Test/test"
 import { Storage } from "aws-amplify"
-import Chart from "../components/PlayerTrendChart/chart"
+import ChartTile from "../components/PlayerTrendChart/chart_tile"
 import { graphql } from "gatsby"
 
 class ProjectsPage extends React.Component {
@@ -11,10 +11,11 @@ class ProjectsPage extends React.Component {
       <>
         <SEO title="Projects" />
         <h1>Projects page</h1>
-        <Chart
+        <ChartTile
           player_data={this.props.data.allplayersdata.edges}
           player_id={this.props.data.allplayersiddata.edges}
         />
+        <p>{this.props.data.allplayers_json.edges[1].node.assists + "<"}</p>
       </>
     )
   }
@@ -70,6 +71,14 @@ export const PlayersDataQuery = graphql`
           first_name
           second_name
           id_code
+        }
+      }
+    }
+
+    allplayers_json: allPlayersJson {
+      edges {
+        node {
+          assists
         }
       }
     }
