@@ -12,10 +12,10 @@ class ProjectsPage extends React.Component {
         <SEO title="Projects" />
         <h1>Projects page</h1>
         <ChartTile
-          player_data={this.props.data.allplayersdata.edges}
-          player_id={this.props.data.allplayersiddata.edges}
+          players_data={this.props.data.allplayersdata.edges}
+          players_id={this.props.data.allplayersiddata.edges}
         />
-        <p>{this.props.data.allplayers_json.edges[1].node.assists + "<"}</p>
+        <p>{this.props.data.allplayersdata.edges[1].node.assists + "<"}</p>
       </>
     )
   }
@@ -25,16 +25,14 @@ export default ProjectsPage
 
 export const PlayersDataQuery = graphql`
   query playersdata {
-    allplayersdata: allPlayersCsv {
+    allplayersdata: allPlayersJson {
       edges {
         node {
-          GW
           assists
           bonus
           bps
           clean_sheets
           creativity
-          element
           fixture
           goals_conceded
           goals_scored
@@ -42,7 +40,6 @@ export const PlayersDataQuery = graphql`
           influence
           kickoff_time
           minutes
-          name
           opponent_team
           own_goals
           penalties_missed
@@ -71,14 +68,6 @@ export const PlayersDataQuery = graphql`
           first_name
           second_name
           id_code
-        }
-      }
-    }
-
-    allplayers_json: allPlayersJson {
-      edges {
-        node {
-          assists
         }
       }
     }
