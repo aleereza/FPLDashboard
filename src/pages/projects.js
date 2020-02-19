@@ -4,17 +4,23 @@ import App from "../components/Test/test"
 import { Storage } from "aws-amplify"
 import ChartTile from "../components/PlayerTrendChart/chart_tile"
 import { graphql } from "gatsby"
+import { css } from "@emotion/core"
 
 class ProjectsPage extends React.Component {
   render() {
+    const tileContainerStyle = css`
+      margin-top: 1rem;
+    `
+
     return (
       <>
         <SEO title="Projects" />
-        <h1>Projects page</h1>
-        <ChartTile
-          players_data={this.props.data.allplayersdata.edges}
-          players_id={this.props.data.allplayersiddata.edges}
-        />
+        <div css={tileContainerStyle}>
+          <ChartTile
+            players_data={this.props.data.allplayersdata.edges}
+            players_id={this.props.data.allplayersiddata.edges}
+          />
+        </div>
       </>
     )
   }

@@ -28,14 +28,15 @@ class Chart extends PureComponent {
       data_point.name = "gw" + (i + 1)
       player_ids.forEach(
         player_id =>
-          (data_point[player_fullnames[player_id]] =
-            players_data[player_id].node[property][i])
+          (data_point[player_fullnames[player_id]] = Number(
+            players_data[player_id].node[property][i]
+          ))
       )
       data.push(data_point)
     }
 
     return (
-      <ResponsiveContainer width="100%" height={500}>
+      <ResponsiveContainer width="100%" height={550}>
         <LineChart
           // width={500}
           // height={300}
@@ -43,15 +44,14 @@ class Chart extends PureComponent {
           margin={{
             top: 10,
             right: 10,
-            left: 0,
-            bottom: 0,
+            left: 30,
+            bottom: 30,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="name" interval={0} angle={90} dy={20} />
+          <YAxis domain={[0, "dataMax"]} />
           <Tooltip />
-          <Legend />
           {player_ids.map((id, i) => (
             <Line
               key={i}

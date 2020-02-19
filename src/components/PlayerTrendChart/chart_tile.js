@@ -73,10 +73,18 @@ class ChartTile extends React.Component {
   }
 
   render() {
+    //debug
+    let property_array = []
+    if (this.state.selected_players_id.length > 0) {
+      property_array = this.props.players_data[
+        this.state.selected_players_id[0]
+      ].node[this.state.selected_property]
+    }
+
     const tileContainerStyle = css`
       display: grid;
-      grid-template-columns: 25% auto;
-      grid-template-rows: 25% auto;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 1fr 3fr;
       grid-gap: 0.5rem;
 
       label {
@@ -86,7 +94,6 @@ class ChartTile extends React.Component {
     `
     const generalLayoutStyle = css`
       border: 1px solid red;
-      /* text-align: center; */
       padding: 1rem;
     `
 
@@ -131,6 +138,7 @@ class ChartTile extends React.Component {
             color_palette={this.color_palette}
           />
         </div>
+        <p>{property_array + ""}</p>
       </div>
     )
   }

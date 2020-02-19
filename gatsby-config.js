@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Portfolio Starter`,
+    title: `Fantasy Premier League Dashboard`,
     description: ``,
     author: `@aleereza`,
   },
