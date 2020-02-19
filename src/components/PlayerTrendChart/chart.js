@@ -57,9 +57,7 @@ class Chart extends PureComponent {
               key={i}
               type="monotone"
               dataKey={player_fullnames[id]}
-              stroke={
-                this.props.color_palette[i % this.props.color_palette.length]
-              }
+              stroke={this.props.color_palette[this.props.colors[i]]}
               activeDot={{ r: 8 }}
             />
           ))}

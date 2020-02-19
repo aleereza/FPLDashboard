@@ -31,27 +31,38 @@ class AutoCompleteMulti extends React.Component {
     return suggestions
   }
 
-  //   handleBlur = e => {}
+  //TODO
+  //handleBlur = e => {}
 
   handleOptionClick = selected_option => {
     let selected_options = this.props.selected
+    let selected_colors = this.props.colors
+    let new_color_index = 0
+    if (selected_colors.length > 0) {
+      new_color_index =
+        (selected_colors[selected_colors.length - 1] + 1) %
+        this.props.color_palette.length
+    }
     //check if already selected
     if (!selected_options.includes(selected_option)) {
       selected_options.push(selected_option)
+      selected_colors.push(new_color_index)
       console.log("option added!", selected_option)
       this.setState({ search_text: "", suggestions: [] })
-      this.props.onUpdateSelected(selected_options)
+      this.props.onUpdateSelected(selected_options, selected_colors)
     }
   }
 
   handleOptionRemove = selected_option => {
     console.log("option removed!")
     let selected_options = this.props.selected
+    let selected_colors = this.props.colors
     const index = selected_options.indexOf(selected_option)
     if (index > -1) {
       selected_options.splice(index, 1)
+      selected_colors.splice(index, 1)
     }
-    this.props.onUpdateSelected(selected_options)
+    this.props.onUpdateSelected(selected_options, selected_colors)
   }
 
   render() {
@@ -102,14 +113,15 @@ class AutoCompleteMulti extends React.Component {
               css={selectedStyle}
               style={{
                 backgroundColor: `${
-                  this.props.color_palette[
-                    index % this.props.color_palette.length
-                  ]
+                  this.props.color_palette[this.props.colors[index]]
                 }`,
               }}
             >
               {selected_option}
-              <span onClick={() => this.handleOptionRemove(selected_option)}>
+              <span
+                onClick={() => this.handleOptionRemove(selected_option)}
+                style={{ cursor: "pointer" }}
+              >
                 {" "}
                 X
               </span>

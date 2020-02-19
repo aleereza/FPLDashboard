@@ -9,6 +9,7 @@ class ChartTile extends React.Component {
     selected_players: [],
     selected_players_id: [],
     selected_property: "",
+    selected_colors: [],
   }
   player_ids = []
   player_fullnames = []
@@ -42,12 +43,13 @@ class ChartTile extends React.Component {
     this.setState({ selected_property: selected_property })
   }
 
-  onSelectedPlayersChange = selected_players => {
+  onSelectedPlayersChange = (selected_players, selected_colors) => {
     this.setState({
       selected_players: selected_players,
       selected_players_id: selected_players.map(name =>
         this.player_fullnames.indexOf(name)
       ),
+      selected_colors: selected_colors,
     })
   }
 
@@ -115,6 +117,7 @@ class ChartTile extends React.Component {
             options={this.player_fullnames}
             selected={this.state.selected_players}
             onUpdateSelected={this.onSelectedPlayersChange}
+            colors={this.state.selected_colors}
             color_palette={this.color_palette}
           />
         </div>
@@ -124,6 +127,7 @@ class ChartTile extends React.Component {
             property={this.state.selected_property}
             players_data={this.props.players_data}
             player_fullnames={this.player_fullnames}
+            colors={this.state.selected_colors}
             color_palette={this.color_palette}
           />
         </div>
