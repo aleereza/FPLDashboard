@@ -1,7 +1,7 @@
 import React from "react"
 import { Router } from "@reach/router"
 
-import Login from "../components/PrivateRoutes/login"
+import Signin from "../components/PrivateRoutes/signin"
 import SignUp from "../components/PrivateRoutes/signup"
 import Settings from "../components/PrivateRoutes/settings"
 import Details from "../components/PrivateRoutes/details"
@@ -14,7 +14,7 @@ const MyDashboard = () => {
     <Router>
       <PrivateRoute path="/mydashboard/settings" component={Settings} />
       <PrivateRoute path="/mydashboard/details" component={Details} />
-      <Login path="/mydashboard/login" />
+      <Signin path="/mydashboard/signin" />
       <SignUp path="/mydashboard/signup" />
       <Default path="/mydashboard" />
     </Router>

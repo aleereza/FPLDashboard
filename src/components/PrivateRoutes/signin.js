@@ -5,7 +5,7 @@ import { setUser, isLoggedIn } from "../../utils/auth"
 import Error from "./error"
 import { Auth } from "aws-amplify"
 
-class Login extends React.Component {
+class Signin extends React.Component {
   state = {
     username: ``,
     password: ``,
@@ -90,4 +90,4 @@ const styles = {
   },
 }
 
-export default Login
+export default Signin

@@ -1,7 +1,7 @@
-export const title = "My Title"
+export const title = "FPL Dashboard"
 export const navbarLinks = [
   { text: "About", path: "/about" },
-  { text: "Projects", path: "/projects" },
+  { text: "General Stats", path: "/general" },
   { text: "Contact", path: "/contact" },
 ]
 

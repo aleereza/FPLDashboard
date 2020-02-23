@@ -6,7 +6,7 @@ import ChartTile from "../components/PlayerTrendChart/chart_tile"
 import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 
-class ProjectsPage extends React.Component {
+class GeneralPage extends React.Component {
   render() {
     const tileContainerStyle = css`
       margin-top: 1rem;
@@ -26,7 +26,7 @@ class ProjectsPage extends React.Component {
   }
 }
 
-export default ProjectsPage
+export default GeneralPage
 
 export const PlayersDataQuery = graphql`
   query playersdata {

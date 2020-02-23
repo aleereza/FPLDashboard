@@ -83,7 +83,7 @@ class ChartTile extends React.Component {
 
     const tileContainerStyle = css`
       display: grid;
-      grid-template-columns: 1fr 4fr;
+      grid-template-columns: 20% auto;
       grid-template-rows: 1fr 3fr;
       grid-gap: 0.5rem;
 

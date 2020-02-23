@@ -24,7 +24,14 @@ class AutoCompleteMulti extends React.Component {
   makeSuggestions(options, text) {
     var suggestions = []
     options.forEach(option => {
-      if (option.toLowerCase().includes(text.toLowerCase()) && text != " ") {
+      if (
+        option
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(text.toLowerCase()) &&
+        text != " "
+      ) {
         suggestions.push(option)
       }
     })

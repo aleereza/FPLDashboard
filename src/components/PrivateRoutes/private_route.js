@@ -6,7 +6,7 @@ class PrivateRoute extends React.Component {
   render() {
     const { component: Component, location, ...rest } = this.props
     if (!isLoggedIn()) {
-      navigate(`/mydashboard/login`)
+      navigate(`/mydashboard/signin`)
       return null
     }
     return <Component {...rest} />

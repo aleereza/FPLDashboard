@@ -17,7 +17,7 @@ class Header extends React.Component {
 
   render() {
     const headerStyle = css`
-      background-color: pink;
+      background-color: lightseagreen;
     `
 
     const overlay = css`

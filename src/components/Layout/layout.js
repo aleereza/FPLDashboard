@@ -1,30 +1,53 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 import Header from "./Header/header"
 import Main from "./main"
 import Footer from "./footer"
 import { Global } from "@emotion/core"
 import { global } from "../../data/styles"
+import { isLoggedIn, getCurrentUser } from "../../utils/auth"
+import AuthContext from "./auth_context"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+class Layout extends React.Component {
+  state = { is_loggedin: isLoggedIn(), user: getCurrentUser() }
 
-  return (
-    <>
-      <Global styles={global} />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <Main>{children}</Main>
-      <Footer />
-    </>
-  )
+  render() {
+    return (
+      <AuthContext.Provider
+        value={{ is_loggedin: this.state.is_loggedin, user: this.state.user }}
+      >
+        <StaticQuery
+          query={graphql`
+            query SiteTitleQuery {
+              site {
+                siteMetadata {
+                  title
+                }
+              }
+            }
+          `}
+          render={data => (
+            <>
+              <Global styles={global} />
+              <Header
+                siteTitle={data.site.siteMetadata.title}
+                isLoggedIn={this.state.is_loggedin}
+              />
+              <Main>{this.props.children}</Main>
+              <Footer />
+            </>
+          )}
+        />
+      </AuthContext.Provider>
+    )
+  }
 }
+
+// const Layout = ({ children }) => {
+
+//   return (
+
+//   )
+// }
 
 export default Layout

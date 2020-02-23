@@ -3,6 +3,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll"
 import { css } from "@emotion/core"
 import { navbarLinks } from "../../../data/info"
 import { Link } from "gatsby"
+import User from "./user"
 
 const wrapperStyle = css`
   display: flex;
@@ -32,7 +33,7 @@ const wrapperStyle = css`
 // `
 
 const linkActiveStyle = {
-  backgroundColor: "red",
+  color: "black",
 }
 
 const NavbarLinks = ({ toggle }) => {
@@ -48,6 +49,7 @@ const NavbarLinks = ({ toggle }) => {
           {item.text}
         </Link>
       ))}
+      <User />
     </div>
   )
 }
