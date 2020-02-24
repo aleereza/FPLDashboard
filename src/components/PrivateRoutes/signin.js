@@ -4,6 +4,7 @@ import { navigate } from "@reach/router"
 import { setUser, isLoggedIn } from "../../utils/auth"
 import Error from "./error"
 import { Auth } from "aws-amplify"
+import AuthContext from "../Layout/auth_context"
 
 class Signin extends React.Component {
   state = {
@@ -18,7 +19,7 @@ class Signin extends React.Component {
     })
   }
 
-  login = async () => {
+  login = async onLogIn => {
     const { username, password } = this.state
     try {
       await Auth.signIn(username, password)
@@ -28,6 +29,7 @@ class Signin extends React.Component {
         username: user.username,
       }
       setUser(userInfo)
+      onLogIn()
       navigate("/mydashboard/")
     } catch (err) {
       this.setState({ error: err })
@@ -38,32 +40,39 @@ class Signin extends React.Component {
   render() {
     if (isLoggedIn()) navigate("/mydashboard/")
     return (
-      <div>
-        <h1>Sign In</h1>
-        {this.state.error && <Error errorMessage={this.state.error} />}
-        <div style={styles.formContainer}>
-          <input
-            onChange={this.handleUpdate}
-            placeholder="Username"
-            name="username"
-            value={this.state.username}
-            style={styles.input}
-          />
-          <input
-            onChange={this.handleUpdate}
-            placeholder="Password"
-            name="password"
-            value={this.state.password}
-            type="password"
-            style={styles.input}
-          />
-          <div style={styles.button} onClick={this.login}>
-            <span style={styles.buttonText}>Sign In</span>
+      <AuthContext.Consumer>
+        {value => (
+          <div>
+            <h1>Sign In</h1>
+            {this.state.error && <Error errorMessage={this.state.error} />}
+            <div style={styles.formContainer}>
+              <input
+                onChange={this.handleUpdate}
+                placeholder="Username"
+                name="username"
+                value={this.state.username}
+                style={styles.input}
+              />
+              <input
+                onChange={this.handleUpdate}
+                placeholder="Password"
+                name="password"
+                value={this.state.password}
+                type="password"
+                style={styles.input}
+              />
+              <div
+                style={styles.button}
+                onClick={() => this.login(value.onLogIn)}
+              >
+                <span style={styles.buttonText}>Sign In</span>
+              </div>
+            </div>
+            <Link to="/mydashboard/signup">Sign Up</Link>
+            <br />
           </div>
-        </div>
-        <Link to="/mydashboard/signup">Sign Up</Link>
-        <br />
-      </div>
+        )}
+      </AuthContext.Consumer>
     )
   }
 }

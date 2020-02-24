@@ -11,10 +11,23 @@ import AuthContext from "./auth_context"
 class Layout extends React.Component {
   state = { is_loggedin: isLoggedIn(), user: getCurrentUser() }
 
+  handleLogIn = () => {
+    this.setState({ is_loggedin: true, user: getCurrentUser() })
+  }
+
+  handleLogOut = () => {
+    this.setState({ is_loggedin: false, user: {} })
+  }
+
   render() {
     return (
       <AuthContext.Provider
-        value={{ is_loggedin: this.state.is_loggedin, user: this.state.user }}
+        value={{
+          is_loggedin: this.state.is_loggedin,
+          user: this.state.user,
+          onLogIn: this.handleLogIn,
+          onLogOut: this.handleLogOut,
+        }}
       >
         <StaticQuery
           query={graphql`
@@ -29,10 +42,7 @@ class Layout extends React.Component {
           render={data => (
             <>
               <Global styles={global} />
-              <Header
-                siteTitle={data.site.siteMetadata.title}
-                isLoggedIn={this.state.is_loggedin}
-              />
+              <Header siteTitle={data.site.siteMetadata.title} />
               <Main>{this.props.children}</Main>
               <Footer />
             </>
